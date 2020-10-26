@@ -20,11 +20,8 @@ import com.redhat.rhn.domain.channel.Channel;
 import com.redhat.rhn.domain.errata.Errata;
 import com.redhat.rhn.domain.errata.test.ErrataFactoryTest;
 import com.redhat.rhn.domain.org.Org;
+import com.redhat.rhn.domain.rhnpackage.*;
 import com.redhat.rhn.domain.rhnpackage.Package;
-import com.redhat.rhn.domain.rhnpackage.PackageArch;
-import com.redhat.rhn.domain.rhnpackage.PackageEvr;
-import com.redhat.rhn.domain.rhnpackage.PackageEvrFactory;
-import com.redhat.rhn.domain.rhnpackage.PackageName;
 import com.redhat.rhn.domain.rhnpackage.test.PackageTest;
 import com.redhat.rhn.domain.rhnset.RhnSet;
 import com.redhat.rhn.domain.rhnset.SetCleanup;
@@ -109,7 +106,7 @@ public class ServerTestUtils {
         InstalledPackage testInstPack = new InstalledPackage();
         String epoch = null;
         PackageEvr evr = PackageEvrFactory.lookupOrCreatePackageEvr(epoch, version,
-                release);
+                release, addTo.getPackageType());
         testInstPack.setEvr(evr);
 
         PackageArch parch = (PackageArch) TestUtils.lookupFromCacheById(

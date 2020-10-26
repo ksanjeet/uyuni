@@ -108,14 +108,6 @@ public class SatelliteServer extends Server {
     }
 
     /**
-     * Sets the satellite version.
-     * @param v Version
-     */
-    public void setVersion(String v) {
-        setVersion(PackageEvrFactory.lookupOrCreatePackageEvr(null, v, "1"));
-    }
-
-    /**
      * {@inheritDoc}
      */
     @Override

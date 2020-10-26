@@ -60,18 +60,6 @@ public class ProxyInfo {
     }
 
     /**
-     * Sets the satellite version in epoch, version, release format.
-     * @param e Epoch can be null.
-     * @param v Version
-     * @param r Release
-     */
-    public void setVersion(String e, String v, String r) {
-        setVersion(PackageEvrFactory.lookupOrCreatePackageEvr(e, v, r));
-    }
-
-
-
-    /**
      * @return the server
      */
     public Server getServer() {

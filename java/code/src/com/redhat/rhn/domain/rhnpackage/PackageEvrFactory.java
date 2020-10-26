@@ -45,19 +45,20 @@ public class PackageEvrFactory {
      * @return Returns a new/committed PackageEvr object.
      */
     private static Long lookupPackageEvr(String epoch, String version,
-            String release) {
+            String release, String type) {
 
         CallableMode m = ModeFactory.getCallableMode("Package_queries", "lookup_evr");
 
-        Map inParams = new HashMap();
+        Map<String, Object> inParams = new HashMap<>();
         inParams.put("epoch", epoch);
         inParams.put("version", version);
         inParams.put("release", release);
+        inParams.put("type", type);
 
-        Map outParams = new HashMap();
+        Map<String, Integer> outParams = new HashMap<>();
         outParams.put("evrId", Types.NUMERIC);
 
-        Map result = m.execute(inParams, outParams);
+        Map<String, Object> result = m.execute(inParams, outParams);
 
         return (Long) result.get("evrId");
     }
@@ -72,7 +73,7 @@ public class PackageEvrFactory {
             return lookupPackageEvrById(evr.getId());
         }
         return lookupOrCreatePackageEvr(evr.getEpoch(), evr.getVersion(),
-                evr.getRelease());
+                evr.getRelease(), evr.getPackageType());
     }
 
     /**
@@ -82,8 +83,8 @@ public class PackageEvrFactory {
      * @param r PackageEvr Release
      * @return Returns a committed PackageEvr
      */
-    public static PackageEvr lookupOrCreatePackageEvr(String e, String v, String r) {
-        Long id = lookupPackageEvr(e, v, r);
+    public static PackageEvr lookupOrCreatePackageEvr(String e, String v, String r, PackageType type) {
+        Long id = lookupPackageEvr(e, v, r, type.getDbString());
         return lookupPackageEvrById(id);
     }
 
@@ -106,12 +107,13 @@ public class PackageEvrFactory {
      * @return the PackageEvr found
      */
     public static Optional<PackageEvr> lookupPackageEvrByEvr(
-            String epoch, String version, String release) {
+            String epoch, String version, String release, PackageType type) {
         Session session = HibernateFactory.getSession();
         return (Optional<PackageEvr>) session.getNamedQuery("PackageEvr.lookupByEvr")
                 .setString("e_in", epoch)
                 .setString("v_in", version)
                 .setString("r_in", release)
+                .setString("t_in", type.getDbString())
                 .uniqueResultOptional();
     }
 

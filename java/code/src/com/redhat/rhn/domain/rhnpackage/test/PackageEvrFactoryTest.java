@@ -16,6 +16,7 @@ package com.redhat.rhn.domain.rhnpackage.test;
 
 import com.redhat.rhn.domain.rhnpackage.PackageEvr;
 import com.redhat.rhn.domain.rhnpackage.PackageEvrFactory;
+import com.redhat.rhn.domain.rhnpackage.PackageType;
 import com.redhat.rhn.testing.RhnBaseTestCase;
 
 /**
@@ -49,8 +50,8 @@ public class PackageEvrFactoryTest extends RhnBaseTestCase {
      */
     public static PackageEvr createTestPackageEvr(String epoch,
                                                   String version,
-                                                  String release) {
-        return PackageEvrFactory.lookupOrCreatePackageEvr(epoch, version, release);
+                                                  String release, PackageType type) {
+        return PackageEvrFactory.lookupOrCreatePackageEvr(epoch, version, release, type);
     }
 
     /**
@@ -62,6 +63,6 @@ public class PackageEvrFactoryTest extends RhnBaseTestCase {
         String version = "1.0.0";
         String release = "1";
 
-        return createTestPackageEvr(epoch, version, release);
+        return createTestPackageEvr(epoch, version, release, PackageType.RPM);
     }
 }

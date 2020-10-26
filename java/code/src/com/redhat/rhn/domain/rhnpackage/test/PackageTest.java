@@ -25,16 +25,8 @@ import com.redhat.rhn.common.util.MD5Crypt;
 import com.redhat.rhn.domain.channel.Channel;
 import com.redhat.rhn.domain.common.ChecksumFactory;
 import com.redhat.rhn.domain.org.Org;
+import com.redhat.rhn.domain.rhnpackage.*;
 import com.redhat.rhn.domain.rhnpackage.Package;
-import com.redhat.rhn.domain.rhnpackage.PackageArch;
-import com.redhat.rhn.domain.rhnpackage.PackageCapability;
-import com.redhat.rhn.domain.rhnpackage.PackageEvr;
-import com.redhat.rhn.domain.rhnpackage.PackageEvrFactory;
-import com.redhat.rhn.domain.rhnpackage.PackageFactory;
-import com.redhat.rhn.domain.rhnpackage.PackageFile;
-import com.redhat.rhn.domain.rhnpackage.PackageGroup;
-import com.redhat.rhn.domain.rhnpackage.PackageName;
-import com.redhat.rhn.domain.rhnpackage.PackageSource;
 import com.redhat.rhn.domain.rpm.SourceRpm;
 import com.redhat.rhn.domain.rpm.test.SourceRpmTest;
 import com.redhat.rhn.domain.user.User;
@@ -238,7 +230,7 @@ public class PackageTest extends BaseTestCaseWithUser {
 
     public void testGetNevraWithEpoch() throws Exception {
         Package pkg = createTestPackage(user.getOrg());
-        PackageEvr evr = PackageEvrFactoryTest.createTestPackageEvr("1", "2", "3");
+        PackageEvr evr = PackageEvrFactoryTest.createTestPackageEvr("1", "2", "3", PackageType.RPM);
         pkg.setPackageEvr(evr);
 
         String expectedNevra = pkg.getPackageName().getName() + "-1:2-3." + pkg.getPackageArch().getLabel();
@@ -246,7 +238,7 @@ public class PackageTest extends BaseTestCaseWithUser {
         // Following two methods must return the same result if an epoch exists
         assertEquals(pkg.getNameEvra(), pkg.getNevraWithEpoch());
 
-        evr = PackageEvrFactoryTest.createTestPackageEvr(null, "2", "3");
+        evr = PackageEvrFactoryTest.createTestPackageEvr(null, "2", "3", PackageType.RPM);
         pkg.setPackageEvr(evr);
 
         expectedNevra = pkg.getPackageName().getName() + "-0:2-3." + pkg.getPackageArch().getLabel();

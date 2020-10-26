@@ -18,6 +18,7 @@ package com.redhat.rhn.domain.contentmgmt;
 import com.redhat.rhn.domain.errata.Errata;
 import com.redhat.rhn.domain.rhnpackage.Package;
 
+import com.redhat.rhn.domain.rhnpackage.PackageEvr;
 import com.suse.manager.utils.PackageUtils;
 
 import java.util.List;
@@ -98,19 +99,19 @@ public class ErrataFilter extends ContentFilter<Errata> {
                 switch (matcher) {
                     case CONTAINS_PKG_LT_EVR:
                         return pstream.anyMatch(p -> p.getPackageEvr().compareTo(
-                                PackageUtils.parsePackageEvr(p, evr)) < 0);
+                                PackageEvr.parsePackageEvr(p.getPackageEvr().getPackageType(), evr)) < 0);
                     case CONTAINS_PKG_LE_EVR:
                         return pstream.anyMatch(p -> p.getPackageEvr().compareTo(
-                                PackageUtils.parsePackageEvr(p, evr)) <= 0);
+                                PackageEvr.parsePackageEvr(p.getPackageEvr().getPackageType(), evr)) <= 0);
                     case CONTAINS_PKG_EQ_EVR:
                         return pstream.anyMatch(p -> p.getPackageEvr().compareTo(
-                                PackageUtils.parsePackageEvr(p, evr)) == 0);
+                                PackageEvr.parsePackageEvr(p.getPackageEvr().getPackageType(), evr)) == 0);
                     case CONTAINS_PKG_GE_EVR:
                         return pstream.anyMatch(p -> p.getPackageEvr().compareTo(
-                                PackageUtils.parsePackageEvr(p, evr)) >= 0);
+                                PackageEvr.parsePackageEvr(p.getPackageEvr().getPackageType(), evr)) >= 0);
                     case CONTAINS_PKG_GT_EVR:
                         return pstream.anyMatch(p -> p.getPackageEvr().compareTo(
-                                PackageUtils.parsePackageEvr(p, evr)) > 0);
+                                PackageEvr.parsePackageEvr(p.getPackageEvr().getPackageType(), evr)) > 0);
                     default:
                         throw new UnsupportedOperationException("Matcher " + matcher + " not supported");
                 }

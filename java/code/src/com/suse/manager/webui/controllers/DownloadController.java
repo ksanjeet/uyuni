@@ -369,7 +369,7 @@ public class DownloadController {
         if ("deb".equalsIgnoreCase(extension) || "udeb".equalsIgnoreCase(extension)) {
             name = StringUtils.substringBeforeLast(rest, "_");
             rest = StringUtils.substringAfterLast(rest, "_");
-            PackageEvr pkgEv = PackageUtils.parseDebianEvr(rest);
+            PackageEvr pkgEv = PackageEvr.parseDebian(rest);
             epoch = pkgEv.getEpoch();
             version = pkgEv.getVersion();
             release = pkgEv.getRelease();
