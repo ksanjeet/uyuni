@@ -585,7 +585,7 @@ public class KickstartHandler extends BaseHandler {
      * @param newLabel to assign to profile
      * @return 1 if successful, exception otherwise.
      *
-     * @xmlrpc.doc Rename a kickstart profile.
+     * @xmlrpc.doc Rename a kickstart profile in Uyuni.
      * @xmlrpc.param #session_key()
      * @xmlrpc.param #param_desc("string", "originalLabel" "Label for the
      * kickstart profile you want to rename")
@@ -656,7 +656,7 @@ public class KickstartHandler extends BaseHandler {
      * @param kickstartFileContents Contents of a kickstart file.
      * @return 1 if successful, exception otherwise.
      *
-     * @xmlrpc.doc Import a raw kickstart file.
+     * @xmlrpc.doc Import a raw kickstart file into Uyuni.
      * @xmlrpc.param #session_key()
      * @xmlrpc.param #param_desc("string", "profileLabel", "Label for the new
      * kickstart profile.")
@@ -690,7 +690,7 @@ public class KickstartHandler extends BaseHandler {
      * for the profile. Valid choices are "none" or "all".
      * @return 1 if successful, exception otherwise.
      *
-     * @xmlrpc.doc Import a raw kickstart file.
+     * @xmlrpc.doc Import a raw kickstart file into Uyuni.
      * @xmlrpc.param #session_key()
      * @xmlrpc.param #param_desc("string", "profileLabel", "Label for the new
      * kickstart profile.")
