@@ -710,14 +710,14 @@ public class OrgHandler extends BaseHandler {
 
     /**
      * Returns whether Organization Administrator is able to manage his organization
-     * configuration. This may have a high impact on performance.
+     * configuration. This may have a high impact on general Uyuni performance.
      *
      * @param loggedInUser The current user
      * @param orgId affected organization
      * @return Returns the status org admin management setting
      *
      * @xmlrpc.doc Returns whether Organization Administrator is able to manage his
-     * organization configuration. This may have a high impact on performance.
+     * organization configuration. This may have a high impact on general Uyuni performance.
      *
      * @xmlrpc.param #param("string", "sessionKey")
      * @xmlrpc.param #param("int", "orgId")
@@ -731,7 +731,7 @@ public class OrgHandler extends BaseHandler {
 
     /**
      * Sets whether Organization Administrator can manage his organization configuration.
-     * This may have a high impact on performance.
+     * This may have a high impact on general Uyuni performance.
      *
      * @param loggedInUser The current user
      * @param orgId affected organization id
@@ -740,7 +740,7 @@ public class OrgHandler extends BaseHandler {
      * @return Returns 1 for successful change, exception otherwise
      *
      * @xmlrpc.doc Sets whether Organization Administrator can manage his organization
-     * configuration. This may have a high impact on performance.
+     * configuration. This may have a high impact on general Uyuni performance.
      *
      * @xmlrpc.param #param("string", "sessionKey")
      * @xmlrpc.param #param("int", "orgId")
